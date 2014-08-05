@@ -1,38 +1,12 @@
 package com.dickinson.program;
 import java.util.ArrayList;
 public class Recipe extends item implements ManageItems   {
-	private ArrayList<Ingredient> ing=new ArrayList<Ingredient>();;
+	
+	private ArrayList<item>  ingredients;
 	private String instructions;
-	public void addIngredient(Ingredient i) {
-		ing.add(i);
-
+	public Recipe(){
+		 ingredients = new ArrayList<item>();
 	}
-
-	public void deleteIngredient(Ingredient i) {
-		for(Ingredient b: ing){
-			if (b.getName().equals(b.getName())){
-				ing.remove(b);
-
-			}
-		}
-
-	}
-
-
-	public item getIngredient(String name) {
-		item it = null;
-		for(Ingredient i: ing){
-			if (i.getName().equals(name)){
-				it=i;
-			}
-		}
-		return it;
-	}
-	public ArrayList<Ingredient> GetIngredients() {
-		
-		return ing;
-	}
-
 	public String getInstructions() {
 		return instructions;
 	}
@@ -44,34 +18,47 @@ public class Recipe extends item implements ManageItems   {
 	@Override
 	public void addItem(item i) {
 		// TODO Auto-generated method stub
-		
+		ingredients.add(i);
 	}
 
 	@Override
 	public void editItem(item i) {
-		// TODO Auto-generated method stub
+		for(item it:  ingredients){
+			if (it.getName().equals(i.getName())){
+				 ingredients.remove(it);
+				 ingredients.add((Ingredient)i);
+			}
+		}
 		
 	}
+	@Override
+	public item getItem(String name) {
+		item it=null;
+		for(item i: ingredients){
+			if(i.getName().equals(name)){
+				it=i;
+			}
+		}
+		return it;
+		}
 
 	@Override
 	public void deleteItem(item i) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public item getItem(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public ArrayList<item> GetItems() {
-	
-		return null;
+		return  ingredients;
+		}
+
+	public String Fix(){
+		String fix="";
+		for (item i  :ingredients){
+			fix+= i+" ";
+		}
+		return fix;
 	}
-
-
 	
 }
 
